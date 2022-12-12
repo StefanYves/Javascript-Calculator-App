@@ -1,0 +1,26 @@
+.center-elements {
+  margin: auto;
+  width: 10%;
+  padding: 10px;
+  margin-top: 200px;
+  border: 1px black solid;
+}
+
+.btn {
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-top {
+  background-color: rgb(96, 165, 244);
+}
+
+.btn-margin {
+  padding-left: 11px;
+  padding-right: 11px;
+}
+
+.btn-equal {
+}
