@@ -41,7 +41,7 @@ for (var i = 0; i < operator.length; i++) {
     ) {
       var newString =
         currentString.substring(0, currentString.length - 1) +
-        e.target.addEventListener.innerHTML;
+        e.target.innerHTML;
       input.innerHTML = newString;
     } else if (currentString == 0) {
       alert("Enter a number first!");
@@ -50,3 +50,56 @@ for (var i = 0; i < operator.length; i++) {
     }
   });
 }
+
+result.addEventListener("click", function () {
+  var inputString = input.innerHTML;
+
+  var numbers = inputString.split(/\+|\-|\×|\÷/g);
+
+  var operators = inputString.replace(/[0-9]|\./g, "").split("");
+
+  console.log(inputString);
+  console.log(operators);
+  console.log(numbers);
+  console.log("----------------------------");
+
+  var divide = operators.indexOf("÷");
+  while (divide != -1) {
+    numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
+    operators.splice(divide, 1);
+    divide = operators.indexOf("÷");
+  }
+
+  var multiply = operators.indexOf("×");
+  while (multiply != -1) {
+    numbers.splice(multiply, 2, numbers[multiply] * numbers[multiply + 1]);
+    operators.splice(multiply, 1);
+    multiply = operators.indexOf("×");
+  }
+
+  var substract = operators.indexOf("-");
+  while (substract != -1) {
+    numbers.splice(substract, 2, numbers[substract] - numbers[substract + 1]);
+    operators.splice(substract, 1);
+    substract = operators.indexOf("-");
+  }
+
+  var add = operators.indexOf("+");
+  while (add != -1) {
+    numbers.splice(
+      add,
+      2,
+      parseFloat(numbers[add]) + parseFloat(numbers[add + 1])
+    );
+    operators.splice(add, 1);
+    add = operators.indexOf("+");
+  }
+
+  input.innerHTML = numbers[0];
+
+  resultDisplayed = true;
+});
+
+clear.addEventListener("click", function () {
+  input.innerHTML = "";
+});
